@@ -1,0 +1,65 @@
+@startuml
+skinparam interface {
+    backgroundColor<<input>> darkblue
+    backgroundColor<<output>> cyan
+}
+skinparam artifact {
+     backgroundColor<<noDependency>> orchid
+     backgroundColor<<dependencies>> darkturquoise
+ }
+' steps
+artifact associations <<dependencies>>
+artifact associationOTF <<dependencies>>
+artifact disease <<noDependency>>
+artifact drug <<dependencies>>
+artifact evidence <<dependencies>>
+artifact expression <<noDependency>>
+artifact go <<noDependency>>
+artifact interactions <<dependencies>>
+artifact knownDrugs <<dependencies>>
+artifact targetValidation<<dependencies>>
+artifact reactome <<noDependency>>
+artifact search <<dependencies>>
+artifact target <<dependencies>>
+artifact openfda <<dependencies>>
+artifact ebiSearch <<dependencies>>
+
+reactome --> target
+
+evidence --> associations
+disease --> associations
+
+reactome --> associationOTF
+evidence --> associationOTF
+disease --> associationOTF
+target --> associationOTF
+
+target --> drug
+disease --> drug
+evidence --> drug
+target --> evidence
+disease --> evidence
+
+evidence --> knownDrugs
+disease --> knownDrugs
+target --> knownDrugs
+drug --> knownDrugs
+
+evidence --> search
+disease --> search
+target --> search
+drug --> search
+associations --> search
+
+target --> interactions
+
+target --> targetValidation
+
+drug --> openfda
+
+disease --> ebiSearch
+target --> ebiSearch
+evidence --> ebiSearch
+associations --> ebiSearch
+
+@enduml
