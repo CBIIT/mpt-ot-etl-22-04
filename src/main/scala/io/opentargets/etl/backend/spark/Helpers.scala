@@ -92,9 +92,9 @@ object Helpers extends LazyLogging {
       .getOrCreate
 
       spark.sparkContext
-           .hadoopConfiguration.set("fs.s3a.access.key", "AKIAWDY6UMTAJ4SQBAVL")
+           .hadoopConfiguration.set("fs.s3a.access.key", "key")
       spark.sparkContext
-           .hadoopConfiguration.set("fs.s3a.secret.key", "tlhTsKrBSX7q1eZOEMZiEeb/r74DznlpJGGrMBOb")
+           .hadoopConfiguration.set("fs.s3a.secret.key", "key")
       spark.sparkContext
             .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
             
