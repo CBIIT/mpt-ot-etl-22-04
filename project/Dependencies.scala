@@ -10,6 +10,8 @@ object Dependencies {
     sparkDeps,
     testingDeps,
     gcp,
+    aws,
+    hadoopAws,
     Seq(typeSafeConfig)
   ).flatten
 
@@ -34,7 +36,7 @@ object Dependencies {
     "com.databricks" %% "spark-xml" % "0.11.0",
     "org.apache.spark" %% "spark-core" % sparkVersion,
     "org.apache.spark" %% "spark-sql" % sparkVersion,
-    "org.apache.spark" %% "spark-graphx" % sparkVersion  ,
+    "org.apache.spark" %% "spark-graphx" % sparkVersion,
     "org.apache.spark" %% "spark-mllib" % sparkVersion  
   )
   lazy val scalaCheck = "org.scalacheck" %% "scalacheck" % "1.14.3"
@@ -51,4 +53,13 @@ object Dependencies {
     "com.google.cloud" % "google-cloud-dataproc" % "2.3.2" % "provided",
     "com.google.cloud" % "google-cloud-storage" % "2.4.2"
   )
+
+  lazy val hadoopAws = Seq(
+    "org.apache.hadoop" % "hadoop-common" % "3.1.0",
+    "org.apache.hadoop" % "hadoop-client" % "3.1.0",
+    "org.apache.hadoop" % "hadoop-mapreduce-client-core" % "3.1.0",
+    "org.apache.hadoop" % "hadoop-aws" % "3.1.0"
+
+  )
+  lazy val aws = Seq("com.amazonaws" % "aws-java-sdk-bundle" % "1.11.271")
 }

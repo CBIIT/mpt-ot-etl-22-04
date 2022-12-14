@@ -79,6 +79,7 @@ object Helpers extends LazyLogging {
       .set("spark.driver.maxResultSize", "0")
       .set("spark.debug.maxToStringFields", "4000")
       .set("spark.sql.debug.maxToStringFields", "4000")
+      .set("spark.hadoop.fs.s3a.bucket.mybucket.committer.magic.enabled", "true")
 
     // if some uri then setmaster must be set otherwise
     // it tries to get from env if any yarn running
@@ -86,10 +87,18 @@ object Helpers extends LazyLogging {
       case Some(uri) if uri.nonEmpty => sparkConf.setMaster(uri)
       case _                         => sparkConf
     }
-
-    SparkSession.builder
+    val spark: SparkSession = SparkSession.builder
       .config(conf)
       .getOrCreate
+
+      spark.sparkContext
+           .hadoopConfiguration.set("fs.s3a.access.key", "AKIAWDY6UMTAJ4SQBAVL")
+      spark.sparkContext
+           .hadoopConfiguration.set("fs.s3a.secret.key", "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")
+      spark.sparkContext
+            .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
+            
+    spark
   }
 
   /** apply to newNameFn() to the new name for the transformation and columnFn() to the inColumn
